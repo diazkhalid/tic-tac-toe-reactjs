@@ -23,7 +23,13 @@ function Board({isXNext, squares, onPlay}) {
   const winner = calculateWinner(squares);
   let status = '';
 
-  status = winner ? `Winner: ${winner}` : `Next Player: ${(isXNext ? 'X' : 'O')}`
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else if (squares.every(square => square !== null)) {
+    status = 'Draw';
+  } else {
+    status = 'Next Player: ' + (isXNext ? 'X' : 'O');
+  }
 
   return (
     <>
